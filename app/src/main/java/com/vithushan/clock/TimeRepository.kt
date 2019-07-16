@@ -1,22 +1,28 @@
 package com.vithushan.clock
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.timerTask
 
 class TimeRepository {
 
     private val SECOND = 1000L
-    private var counter = 0
 
     private val time: MutableLiveData<String> = MutableLiveData()
 
     init {
         val timer = Timer()
 
-        timer.scheduleAtFixedRate(timerTask { (time::postValue)(counter++.toString()) }, SECOND, SECOND)
+        timer.scheduleAtFixedRate(timerTask { (time::postValue)(getTimeString()) }, SECOND, SECOND)
+    }
+
+    private fun getTimeString(): String {
+
+        val time = Calendar.getInstance().time
+        return SimpleDateFormat.getTimeInstance(DateFormat.FULL).format(time)
     }
 
 
