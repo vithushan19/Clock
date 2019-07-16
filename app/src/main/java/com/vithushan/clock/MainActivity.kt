@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,12 +16,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val viewModel = ViewModelProviders.of(this).get(ClockViewModel::class.java)
-        viewModel.time.observe(this, Observer<String> {
+        viewModel.time.observe(this, Observer<Date> {
             updateUI(it)
         })
     }
 
-    private fun updateUI(time: String) {
-        titleLabel.text = time
+    private fun updateUI(time: Date) {
+        val timeString = SimpleDateFormat.getTimeInstance(DateFormat.FULL).format(time)
+
+        titleLabel.text = timeString
     }
 }

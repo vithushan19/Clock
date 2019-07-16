@@ -11,22 +11,15 @@ class TimeRepository {
 
     private val SECOND = 1000L
 
-    private val time: MutableLiveData<String> = MutableLiveData()
+    private val time: MutableLiveData<Date> = MutableLiveData()
 
     init {
         val timer = Timer()
 
-        timer.scheduleAtFixedRate(timerTask { (time::postValue)(getTimeString()) }, SECOND, SECOND)
+        timer.scheduleAtFixedRate(timerTask { (time::postValue)(Calendar.getInstance().time) }, SECOND, SECOND)
     }
 
-    private fun getTimeString(): String {
-
-        val time = Calendar.getInstance().time
-        return SimpleDateFormat.getTimeInstance(DateFormat.FULL).format(time)
-    }
-
-
-    fun getTime(): LiveData<String> {
+    fun getTime(): LiveData<Date> {
         return time
     }
 
