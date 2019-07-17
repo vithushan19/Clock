@@ -26,5 +26,7 @@ class MainActivity : AppCompatActivity() {
         titleLabel.text = timeString
 
         clock.setDate(time)
+        clock2.setDate(time)
+        clock3.setDate(time)
     }
 }

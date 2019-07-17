@@ -14,19 +14,41 @@
             android:textSize="@dimen/titleSize"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/clock"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/clock"/>
 
     <com.vithushan.clock.ClockView
             android:id="@+id/clock"
-            android:layout_width="500dp"
-            android:layout_height="500dp"
-            app:circleColour="@android:color/holo_blue_bright"
-            app:hourHandColour="@android:color/holo_green_dark"
-            app:minuteHandColour="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:circleColour="@android:color/holo_blue_dark"
+            app:hourHandColour="@android:color/holo_green_light"
+            app:minuteHandColour="@android:color/holo_red_light"
+            app:secondHandColour="@android:color/holo_orange_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleLabel"
+            app:layout_constraintBottom_toTopOf="@+id/clock2"/>
+
+    <com.vithushan.clock.ClockView
+            android:id="@+id/clock2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+    />
+
+
+    <com.vithushan.clock.ClockView
+            android:id="@+id/clock3"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:circleColour="@android:color/holo_red_light"
+            app:hourHandColour="@android:color/holo_blue_light"
+            app:minuteHandColour="@android:color/holo_green_light"
             app:secondHandColour="@android:color/holo_orange_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

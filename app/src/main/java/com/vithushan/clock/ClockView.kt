@@ -11,22 +11,18 @@ import java.util.*
 class ClockView : View {
 
     private val hourPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.BLUE
         strokeWidth = 10F
     }
 
     private val minutePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.GREEN
         strokeWidth = 10F
     }
 
     private val secondPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.WHITE
         strokeWidth = 10F
     }
 
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.RED
     }
 
     private val calendar = GregorianCalendar.getInstance()
@@ -40,16 +36,16 @@ class ClockView : View {
             0, 0).apply {
 
             try {
-                val circleColor = getColor(R.styleable.ClockView_circleColour, Color.RED)
+                val circleColor = getColor(R.styleable.ClockView_circleColour, Color.WHITE)
                 circlePaint.color = circleColor
 
-                val hourHandColor = getColor(R.styleable.ClockView_hourHandColour, Color.BLUE)
+                val hourHandColor = getColor(R.styleable.ClockView_hourHandColour, Color.BLACK)
                 hourPaint.color = hourHandColor
 
-                val minuteHandColor = getColor(R.styleable.ClockView_minuteHandColour, Color.GREEN)
+                val minuteHandColor = getColor(R.styleable.ClockView_minuteHandColour, Color.BLACK)
                 minutePaint.color = minuteHandColor
 
-                val secondHandColor = getColor(R.styleable.ClockView_secondHandColour, Color.WHITE)
+                val secondHandColor = getColor(R.styleable.ClockView_secondHandColour, Color.BLACK)
                 secondPaint.color = secondHandColor
 
 
