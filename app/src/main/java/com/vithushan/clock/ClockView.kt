@@ -47,7 +47,7 @@ class ClockView : View {
         canvas.apply {
             val centerX = (width / 2).toFloat()
             val centerY = (height / 2).toFloat()
-            val radius = 200F
+            val radius = (width / 2).toFloat()
 
             canvas.drawCircle(centerX, centerY, radius, circlePaint)
 

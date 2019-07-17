@@ -18,7 +18,7 @@
 
     <com.vithushan.clock.ClockView
             android:id="@+id/clock"
-            android:layout_width="300dp" android:layout_height="300dp"
+            android:layout_width="500dp" android:layout_height="500dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
