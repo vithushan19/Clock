@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI(time: Date) {
-        val timeString = SimpleDateFormat.getTimeInstance(DateFormat.FULL).format(time)
+        val timeString = SimpleDateFormat.getTimeInstance(DateFormat.MEDIUM).format(time)
         titleLabel.text = timeString
 
         clock.setDate(time)
