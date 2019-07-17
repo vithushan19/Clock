@@ -6,12 +6,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import java.util.*
 
 class ClockView : View {
-
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     private val hourPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLUE
@@ -30,6 +27,18 @@ class ClockView : View {
 
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.RED
+    }
+
+    private val calendar = GregorianCalendar.getInstance()
+
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
+    fun setDate(value: Date) {
+        calendar.time = value
+        invalidate()
+        requestLayout()
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -68,11 +77,7 @@ class ClockView : View {
      * 9 o'clock => 270 degrees
      */
     private fun getAngleForHourHand(): Float {
-        return (getHour() % 12) * 30F
-    }
-
-    private fun getHour(): Int {
-        return 0
+        return calendar.get(Calendar.HOUR) * 30F
     }
 
     /**
@@ -82,11 +87,7 @@ class ClockView : View {
      * 45 minutes => 270 degrees
      */
     private fun getAngleForMinuteHand(): Float {
-        return getMinute() * 6F
-    }
-
-    private fun getMinute(): Int {
-        return 45
+        return calendar.get(Calendar.MINUTE) * 6F
     }
 
     /**
@@ -96,11 +97,7 @@ class ClockView : View {
      * 45 seconds => 270 degrees
      */
     private fun getAngleForSecondHand(): Float {
-        return getSecond() * 6F
-    }
-
-    private fun getSecond(): Int {
-        return 15
+        return calendar.get(Calendar.SECOND) * 6F
     }
 
 }
