@@ -31,9 +31,33 @@ class ClockView : View {
 
     private val calendar = GregorianCalendar.getInstance()
 
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.ClockView,
+            0, 0).apply {
+
+            try {
+                val circleColor = getColor(R.styleable.ClockView_circleColour, Color.RED)
+                circlePaint.color = circleColor
+
+                val hourHandColor = getColor(R.styleable.ClockView_hourHandColour, Color.BLUE)
+                hourPaint.color = hourHandColor
+
+                val minuteHandColor = getColor(R.styleable.ClockView_minuteHandColour, Color.GREEN)
+                minutePaint.color = minuteHandColor
+
+                val secondHandColor = getColor(R.styleable.ClockView_secondHandColour, Color.WHITE)
+                secondPaint.color = secondHandColor
+
+
+            } finally {
+                recycle()
+            }
+        }
+    }
 
     fun setDate(value: Date) {
         calendar.time = value
@@ -51,7 +75,7 @@ class ClockView : View {
 
             canvas.drawCircle(centerX, centerY, radius, circlePaint)
 
-            canvas.drawRotatedLine(centerX, centerY, radius, hourPaint, getAngleForHourHand())
+            canvas.drawRotatedLine(centerX, centerY, radius * 0.75F, hourPaint, getAngleForHourHand())
             canvas.drawRotatedLine(centerX, centerY, radius, minutePaint, getAngleForMinuteHand())
             canvas.drawRotatedLine(centerX, centerY, radius, secondPaint, getAngleForSecondHand())
         }

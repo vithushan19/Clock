@@ -18,9 +18,15 @@
 
     <com.vithushan.clock.ClockView
             android:id="@+id/clock"
-            android:layout_width="500dp" android:layout_height="500dp"
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            app:circleColour="@android:color/holo_blue_bright"
+            app:hourHandColour="@android:color/holo_green_dark"
+            app:minuteHandColour="@android:color/black"
+            app:secondHandColour="@android:color/holo_orange_light"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
