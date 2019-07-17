@@ -18,6 +18,16 @@ class ClockView : View {
         strokeWidth = 10F
     }
 
+    private val minutePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.GREEN
+        strokeWidth = 10F
+    }
+
+    private val secondPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.WHITE
+        strokeWidth = 10F
+    }
+
     private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.RED
     }
@@ -32,18 +42,30 @@ class ClockView : View {
 
             canvas.drawCircle(centerX, centerY, radius, circlePaint)
 
-            canvas.save()
-            canvas.rotate(getAngleForHourHand(), centerX, centerY)
-            drawLine(centerX, centerY, centerX, centerY - radius, hourPaint)
-            canvas.restore()
+            canvas.drawRotatedLine(centerX, centerY, radius, hourPaint, getAngleForHourHand())
+            canvas.drawRotatedLine(centerX, centerY, radius, minutePaint, getAngleForMinuteHand())
+            canvas.drawRotatedLine(centerX, centerY, radius, secondPaint, getAngleForSecondHand())
         }
     }
 
+    private fun Canvas.drawRotatedLine(
+        centerX: Float,
+        centerY: Float,
+        radius: Float,
+        paint: Paint,
+        angle: Float
+    ) {
+        save()
+        rotate(angle, centerX, centerY)
+        drawLine(centerX, centerY, centerX, centerY - radius, paint)
+        restore()
+    }
+
     /**
+     * 12 o'clock => 0 degrees
      * 3 o'clock => 90 degrees
      * 6 o'clock => 180 degrees
      * 9 o'clock => 270 degrees
-     * 12 o'clock => 0 degrees
      */
     private fun getAngleForHourHand(): Float {
         return (getHour() % 12) * 30F
@@ -51,6 +73,34 @@ class ClockView : View {
 
     private fun getHour(): Int {
         return 0
+    }
+
+    /**
+     * 0 minutes => 0 degrees
+     * 15 minutes => 90 degrees
+     * 30 minutes => 180 degrees
+     * 45 minutes => 270 degrees
+     */
+    private fun getAngleForMinuteHand(): Float {
+        return getMinute() * 6F
+    }
+
+    private fun getMinute(): Int {
+        return 45
+    }
+
+    /**
+     * 0 seconds => 0 degrees
+     * 15 seconds => 90 degrees
+     * 30 seconds => 180 degrees
+     * 45 seconds => 270 degrees
+     */
+    private fun getAngleForSecondHand(): Float {
+        return getSecond() * 6F
+    }
+
+    private fun getSecond(): Int {
+        return 15
     }
 
 }
