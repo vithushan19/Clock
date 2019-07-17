@@ -16,3 +16,21 @@ I failed an interview question last year where the interviewer asked me to code 
 
 ### Screenshot
 ![Screenshot](https://media.giphy.com/media/hV0hCET0wUJn5Q1Za0/200w_d.gif)
+
+### Useful Examples/Articles that I used
+
+- [An Android Jetpack ViewModel Tutorial](https://www.techotopia.com/index.php/An_Android_Jetpack_ViewModel_Tutorial)
+
+- [Kotlin Syntax Reference](https://kotlinlang.org/docs/reference/basic-syntax.html)
+
+- [Android Architecture Components by Example](https://proandroiddev.com/architecture-components-modelview-livedata-33d20bdcc4e9?gi=dfd695f819ef)
+
+- [Applying Android Architecture Components with Kotlin](https://android.jlelse.eu/applying-android-architecture-components-with-kotlin-bfadb8399521?gi=4f2ae96bb35c)
+
+- [Understanding LiveData made simple](https://medium.com/@elye.project/understanding-live-data-made-simple-a820fcd7b4d0)
+
+- [Google Code Labs - LiveDataTimer Example](https://github.com/googlecodelabs/android-lifecycles/blob/master/app/src/main/java/com/example/android/lifecycles/step3_solution/LiveDataTimerViewModel.java)
+
+- [Android Developer Docs - Custom Views](https://developer.android.com/training/custom-views/create-view)
+
+
