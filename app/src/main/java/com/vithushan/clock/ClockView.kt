@@ -10,19 +10,13 @@ import java.util.*
 
 class ClockView : View {
 
-    private val hourPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        strokeWidth = 10F
-    }
+    private var circleColor = Color.WHITE
+    private var hourHandColor = Color.BLACK
+    private var minuteHandColor = Color.BLACK
+    private var secondHandColor = Color.BLACK
 
-    private val minutePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         strokeWidth = 10F
-    }
-
-    private val secondPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        strokeWidth = 10F
-    }
-
-    private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
     }
 
     private val calendar = GregorianCalendar.getInstance()
@@ -36,18 +30,10 @@ class ClockView : View {
             0, 0).apply {
 
             try {
-                val circleColor = getColor(R.styleable.ClockView_circleColour, Color.WHITE)
-                circlePaint.color = circleColor
-
-                val hourHandColor = getColor(R.styleable.ClockView_hourHandColour, Color.BLACK)
-                hourPaint.color = hourHandColor
-
-                val minuteHandColor = getColor(R.styleable.ClockView_minuteHandColour, Color.BLACK)
-                minutePaint.color = minuteHandColor
-
-                val secondHandColor = getColor(R.styleable.ClockView_secondHandColour, Color.BLACK)
-                secondPaint.color = secondHandColor
-
+                circleColor = getColor(R.styleable.ClockView_circleColour, Color.WHITE)
+                hourHandColor = getColor(R.styleable.ClockView_hourHandColour, Color.BLACK)
+                minuteHandColor = getColor(R.styleable.ClockView_minuteHandColour, Color.BLACK)
+                secondHandColor = getColor(R.styleable.ClockView_secondHandColour, Color.BLACK)
 
             } finally {
                 recycle()
@@ -69,11 +55,17 @@ class ClockView : View {
             val centerY = (height / 2).toFloat()
             val radius = (width / 2).toFloat()
 
-            canvas.drawCircle(centerX, centerY, radius, circlePaint)
+            paint.color = circleColor
+            canvas.drawCircle(centerX, centerY, radius, paint)
 
-            canvas.drawRotatedLine(centerX, centerY, radius * 0.75F, hourPaint, getAngleForHourHand())
-            canvas.drawRotatedLine(centerX, centerY, radius, minutePaint, getAngleForMinuteHand())
-            canvas.drawRotatedLine(centerX, centerY, radius, secondPaint, getAngleForSecondHand())
+            paint.color = hourHandColor
+            canvas.drawRotatedLine(centerX, centerY, radius * 0.75F, paint, getAngleForHourHand())
+
+            paint.color = minuteHandColor
+            canvas.drawRotatedLine(centerX, centerY, radius, paint, getAngleForMinuteHand())
+
+            paint.color = secondHandColor
+            canvas.drawRotatedLine(centerX, centerY, radius, paint, getAngleForSecondHand())
         }
     }
 
